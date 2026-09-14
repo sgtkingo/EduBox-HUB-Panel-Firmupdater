@@ -1,6 +1,6 @@
-# ⚡ Web-based Firmware Updater
+# EduBox HUB Panel · Firmupdater
 
-Web-based tool to flash ESP32 firmware for `SignalTwin` (https://github.com/sgtkingo/SignalTwinProject) via the Web Serial API. No external tools needed.
+Web-based companion tool for flashing [EduBox HUB Panel](https://github.com/sgtkingo/EduBox-HUB-Panel) firmware via the Web Serial API. It belongs to the **Panel** branch of the [EduBox HUB](https://github.com/sgtkingo/EduBox-HUB) ecosystem. No external flashing tools are needed.
 
 ---
 
@@ -25,8 +25,8 @@ Checkout https://sgtkingo.github.io/Firmupdater/
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/Xander2662/VirtualSensors_project.git
-cd VirtualSensors_project
+git clone https://github.com/sgtkingo/EduBox-HUB-Panel-Firmupdater.git
+cd EduBox-HUB-Panel-Firmupdater/firmupdater
 npm install && npm run dev
 ```
 

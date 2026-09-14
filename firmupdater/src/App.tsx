@@ -75,7 +75,7 @@ export default function App() {
   const initialized = useRef(false);
 
   const REPO_OWNER = "sgtkingo";
-  const REPO_NAME = "SignalTwinProject";
+  const REPO_NAME = "EduBox-HUB-Panel";
   const BAUD_RATE = 115200;
 
   // --- 1. Automatická kontrola updatů po startu ---
@@ -574,8 +574,8 @@ export default function App() {
           <div className="flex items-center space-x-3">
             <Cpu className="w-8 h-8 text-blue-400" />
             <div>
-              <h1 className="text-2xl font-bold text-white">Nástroj automatických aktualizací pro EduBox HUB - Panel 📦</h1>
-              <p className="text-sm text-slate-400">součást SignalTwin Project <a href="https://github.com/sgtkingo/SignalTwinProject" target="_blank" rel="noreferrer" className="text-blue-400 hover:text-blue-300">GitHub</a></p>
+              <h1 className="text-2xl font-bold text-white">EduBox HUB Panel · Firmupdater 📦</h1>
+              <p className="text-sm text-slate-400">součást ekosystému EduBox HUB · <a href="https://github.com/sgtkingo/EduBox-HUB-Panel" target="_blank" rel="noreferrer" className="text-blue-400 hover:text-blue-300">GitHub Panelu</a></p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -668,7 +668,7 @@ export default function App() {
                 <Zap size={20} /> 2. Připojení
               </h2>
               <div className="text-sm text-slate-400 mb-4 space-y-2">
-                <p>Připojte zařízení (EduBox HUB - Panel) k počítači USB kabelem.</p>
+                <p>Připojte EduBox HUB Panel k počítači USB kabelem.</p>
                 <p className="text-slate-500 text-xs flex items-center gap-1">
                   <Cable size={12} /> Ujistěte se, že kabel přenáší data (nejen nabíjení).
                 </p>
@@ -718,7 +718,7 @@ export default function App() {
                 <AlertTriangle size={16} className="shrink-0 mt-0.5" />
                 <div>
                   <strong>Tip:</strong> Pokud se nahrávání zasekne na "Connecting...", držte tlačítko
-                  <strong> BOOT</strong> na EduBox HUB - Panelu (ESP32) v momentě kliknutí na tlačítko níže.
+                  <strong> BOOT</strong> na EduBox HUB Panelu (ESP32) v momentě kliknutí na tlačítko níže.
                 </div>
               </div>
 
@@ -765,7 +765,7 @@ export default function App() {
       {/* Footer with version */}
       <div className="max-w-4xl mx-auto mt-8 pt-4 border-t border-slate-700/50 text-center text-xs text-slate-500">
         <p>
-          v{appVersion} | Firmupdater Project © {new Date().getFullYear()} <a href="https://github.com/sgtkingo/Firmupdater" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">
+          v{appVersion} | EduBox HUB Panel Firmupdater © {new Date().getFullYear()} <a href="https://github.com/sgtkingo/EduBox-HUB-Panel-Firmupdater" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">
             Github
           </a>
         </p>
