@@ -97,7 +97,7 @@ export default function App() {
 
   const loadAppVersion = async () => {
     try {
-      const response = await fetch("/Firmupdater/VERSION");
+      const response = await fetch(`${import.meta.env.BASE_URL}VERSION`);
       if (response.ok) {
         const version = await response.text();
         setAppVersion(version.trim());

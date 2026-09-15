@@ -4,6 +4,6 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // IMPORTANT: Set this to your repository name with slashes
-  base: '/Firmupdater/', 
+  // GitHub Pages serves this project below the repository name.
+  base: '/EduBox-HUB-Panel-Firmupdater/',
 })
