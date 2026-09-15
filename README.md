@@ -5,7 +5,7 @@ Web-based companion tool for flashing [EduBox HUB Panel](https://github.com/sgtk
 ---
 
 ## 🌐 Live-page
-Checkout https://sgtkingo.github.io/Firmupdater/
+Checkout [Firmware Autoupdater](https://sgtkingo.github.io/EduBox-HUB-Panel-Firmupdater/)
 
 ## ✨ Features
 
