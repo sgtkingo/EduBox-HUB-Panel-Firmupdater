@@ -1,5 +1,7 @@
 # EduBox HUB Panel · Firmupdater
 
+![Logo EduBox HUB Panel Firmupdater](assets/logo.svg)
+
 Web-based companion tool for flashing [EduBox HUB Panel](https://github.com/sgtkingo/EduBox-HUB-Panel) firmware via the Web Serial API. It belongs to the **Panel** branch of the [EduBox HUB](https://github.com/sgtkingo/EduBox-HUB) ecosystem. No external flashing tools are needed.
 
 ---

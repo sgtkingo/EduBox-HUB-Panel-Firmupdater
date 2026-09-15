@@ -571,11 +571,13 @@ export default function App() {
       <header className="mta-header-band text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-4 min-w-0">
-            {/* Replace with the dedicated Firmupdater logo when it is ready. */}
-            <span className="mta-product-placeholder" aria-label="Dočasný symbol Firmupdateru">F</span>
+            <img
+              src={`${import.meta.env.BASE_URL}firmupdater-logo.svg`}
+              alt="EduBox HUB Panel Firmupdater"
+              className="mta-product-logo"
+            />
             <div className="min-w-0">
-              <p className="text-xs font-semibold uppercase tracking-widest text-blue-100">EduBox HUB · Panel</p>
-              <h1 className="text-2xl sm:text-3xl font-bold leading-tight">Firmupdater</h1>
+              <h1 className="sr-only">EduBox HUB Panel Firmupdater</h1>
               <p className="text-sm text-blue-100">Aktualizace firmwaru dotykového panelu</p>
             </div>
           </div>
