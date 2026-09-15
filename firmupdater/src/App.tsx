@@ -3,7 +3,6 @@ import {
   Terminal,
   RefreshCw,
   Zap,
-  Cpu,
   AlertCircle,
   Download,
   Play,
@@ -358,11 +357,11 @@ export default function App() {
   // Helper pro barvu statusu
   const getStatusColor = () => {
     const msg = getStatusMessage();
-    if (msg.includes("Chyba") || msg.includes("Error")) return "text-red-400";
-    if (msg === "Dokončeno!" || msg === "Připraven") return "text-green-400";
-    if (msg.includes("Flashuju")) return "text-blue-400";
-    if (msg === "Nebylo detekováno žádné zařízení") return "text-yellow-500";
-    return "text-blue-300";
+    if (msg.includes("Chyba") || msg.includes("Error")) return "text-red-700";
+    if (msg === "Dokončeno!" || msg === "Připraven") return "text-emerald-700";
+    if (msg.includes("Flashuju")) return "text-mta-blue";
+    if (msg === "Nebylo detekováno žádné zařízení") return "text-amber-800";
+    return "text-mta-dark";
   };
 
   const flashDisabledReason =
@@ -377,18 +376,19 @@ export default function App() {
   const flashDisabled = !firmwareBin || !portSelected || isFlashing;
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-200 p-6 font-sans relative">
+    <div className="mta-app min-h-screen text-mta-ink relative">
       {/* Help Modal */}
       {showHelp && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
-          <div className="bg-slate-800 rounded-xl shadow-2xl max-w-lg w-full border border-slate-600 flex flex-col max-h-[90vh]">
-            <div className="p-4 border-b border-slate-700 flex justify-between items-center bg-slate-700/50 rounded-t-xl">
-              <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                <HelpCircle className="text-blue-400" /> Nápověda & Řešení problémů
+        <div className="fixed inset-0 bg-mta-dark/75 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+          <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full border border-slate-200 flex flex-col max-h-[90vh]">
+            <div className="p-4 border-b border-slate-200 flex justify-between items-center bg-mta-mist rounded-t-xl">
+              <h3 className="text-xl font-bold text-mta-dark flex items-center gap-2">
+                <HelpCircle className="text-mta-blue" /> Nápověda a řešení problémů
               </h3>
               <button
                 onClick={() => setShowHelp(false)}
-                className="text-slate-400 hover:text-white"
+                className="text-slate-600 hover:text-mta-blue"
+                aria-label="Zavřít nápovědu"
               >
                 <X size={24} />
               </button>
@@ -396,13 +396,13 @@ export default function App() {
 
             <div className="p-0 overflow-y-auto">
               {/* Accordion: Firmware Issue */}
-              <div className="border-b border-slate-700">
+              <div className="border-b border-slate-200">
                 <button
                   onClick={() => toggleHelpSection("firmware")}
                   className={`w-full flex justify-between items-center p-4 text-left font-semibold ${
                     activeHelpSection === "firmware"
-                      ? "bg-slate-700/50 text-white"
-                      : "hover:bg-slate-700/30 text-slate-300"
+                      ? "bg-mta-mist text-mta-dark"
+                      : "hover:bg-mta-mist/70 text-mta-ink"
                   }`}
                 >
                   <span className="flex items-center gap-2">
@@ -415,7 +415,7 @@ export default function App() {
                   )}
                 </button>
                 {activeHelpSection === "firmware" && (
-                  <div className="p-4 bg-slate-900/50 text-sm text-slate-300 space-y-2">
+                  <div className="p-4 bg-slate-50 text-sm text-slate-700 space-y-2">
                     <p>Pokud aplikace nemůže načíst verzi z GitHubu:</p>
                     <ul className="list-disc pl-5 space-y-1">
                       <li>Zkontrolujte připojení k internetu.</li>
@@ -433,13 +433,13 @@ export default function App() {
               </div>
 
               {/* Accordion: Device Visibility (Drivers) */}
-              <div className="border-b border-slate-700">
+              <div className="border-b border-slate-200">
                 <button
                   onClick={() => toggleHelpSection("device")}
                   className={`w-full flex justify-between items-center p-4 text-left font-semibold ${
                     activeHelpSection === "device"
-                      ? "bg-slate-700/50 text-white"
-                      : "hover:bg-slate-700/30 text-slate-300"
+                      ? "bg-mta-mist text-mta-dark"
+                      : "hover:bg-mta-mist/70 text-mta-ink"
                   }`}
                 >
                   <span className="flex items-center gap-2">
@@ -452,7 +452,7 @@ export default function App() {
                   )}
                 </button>
                 {activeHelpSection === "device" && (
-                  <div className="p-4 bg-slate-900/50 text-sm text-slate-300 space-y-4">
+                  <div className="p-4 bg-slate-50 text-sm text-slate-700 space-y-4">
                     <p>Pokud seznam portů zeje prázdnotou, chybí vám ovladače pro USB převodník.</p>
 
                     <div className="space-y-3">
@@ -460,24 +460,24 @@ export default function App() {
                         href="https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=overview"
                         target="_blank"
                         rel="noreferrer"
-                        className="relative block border-2 border-blue-500/50 bg-blue-900/20 rounded p-3 hover:bg-blue-900/30 transition-colors group text-left"
+                        className="relative block border-2 border-mta-blue/40 bg-mta-mist rounded p-3 hover:bg-blue-100 transition-colors group text-left"
                       >
-                        <div className="absolute -top-2.5 left-2 bg-blue-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow flex items-center gap-1">
+                        <div className="absolute -top-2.5 left-2 bg-mta-blue text-white text-xs font-bold px-2 py-0.5 rounded-full shadow flex items-center gap-1">
                           <Star size={10} fill="white" /> DOPORUČENO
                         </div>
                         <div className="flex justify-between items-start">
                           <div>
-                            <div className="font-bold text-blue-200 group-hover:text-blue-100 transition-colors">
+                            <div className="font-bold text-mta-dark group-hover:text-mta-blue transition-colors">
                               CP210x Ovladače (Silicon Labs)
                             </div>
-                            <p className="text-xs text-slate-400 mt-1">
+                            <p className="text-sm text-slate-600 mt-1">
                               Používá většina originálních ESP32 DevKit desek. Toto je nejpravděpodobnější
                               řešení.
                             </p>
                           </div>
                           <ExternalLink
                             size={18}
-                            className="text-blue-500 group-hover:text-white transition-colors"
+                            className="text-mta-blue transition-colors"
                           />
                         </div>
                       </a>
@@ -486,26 +486,26 @@ export default function App() {
                         href="https://www.wch-ic.com/downloads/CH341SER_EXE.html"
                         target="_blank"
                         rel="noreferrer"
-                        className="block border border-slate-600 bg-slate-800/50 rounded p-3 hover:bg-slate-700/50 transition-colors group text-left"
+                        className="block border border-slate-300 bg-white rounded p-3 hover:bg-mta-mist transition-colors group text-left"
                       >
                         <div className="flex justify-between items-start">
                           <div>
-                            <div className="font-bold text-slate-200 group-hover:text-white transition-colors">
+                            <div className="font-bold text-mta-dark group-hover:text-mta-blue transition-colors">
                               CH340 Ovladače (WCH)
                             </div>
-                            <p className="text-xs text-slate-400 mt-1">
+                            <p className="text-sm text-slate-600 mt-1">
                               Používá se u levnějších klonů (Lolin, NodeMCU apod.). Pokud první nezabral,
                               zkuste tento.
                             </p>
                           </div>
                           <ExternalLink
                             size={18}
-                            className="text-slate-500 group-hover:text-white transition-colors"
+                            className="text-mta-blue transition-colors"
                           />
                         </div>
                       </a>
 
-                      <div className="text-xs text-yellow-500/80 pt-2 border-t border-slate-700/50">
+                      <div className="text-sm text-amber-800 pt-2 border-t border-slate-200">
                         <strong>Tip:</strong> Zkuste také jiný USB kabel. Některé kabely jsou pouze nabíjecí
                         a nepřenáší data!
                       </div>
@@ -515,13 +515,13 @@ export default function App() {
               </div>
 
               {/* Accordion: Flashing Failed */}
-              <div className="border-b border-slate-700">
+              <div className="border-b border-slate-200">
                 <button
                   onClick={() => toggleHelpSection("flash")}
                   className={`w-full flex justify-between items-center p-4 text-left font-semibold ${
                     activeHelpSection === "flash"
-                      ? "bg-slate-700/50 text-white"
-                      : "hover:bg-slate-700/30 text-slate-300"
+                      ? "bg-mta-mist text-mta-dark"
+                      : "hover:bg-mta-mist/70 text-mta-ink"
                   }`}
                 >
                   <span className="flex items-center gap-2">
@@ -534,12 +534,12 @@ export default function App() {
                   )}
                 </button>
                 {activeHelpSection === "flash" && (
-                  <div className="p-4 bg-slate-900/50 text-sm text-slate-300 space-y-2">
+                  <div className="p-4 bg-slate-50 text-sm text-slate-700 space-y-2">
                     <p>
                       Pokud se proces zasekne na hlášce <code>Connecting...</code>, znamená to, že se čip
                       nepřepnul do "Download Mode".
                     </p>
-                    <div className="bg-yellow-900/20 border border-yellow-700/30 p-3 rounded text-yellow-200">
+                    <div className="bg-amber-50 border border-amber-200 p-3 rounded text-amber-900">
                       <strong>Manuální postup:</strong>
                       <ol className="list-decimal pl-5 mt-1 space-y-1">
                         <li>Odpojte USB.</li>
@@ -556,10 +556,10 @@ export default function App() {
               </div>
             </div>
 
-            <div className="p-4 border-t border-slate-700 bg-slate-700/30 rounded-b-xl text-center">
+            <div className="p-4 border-t border-slate-200 bg-mta-mist rounded-b-xl text-center">
               <button
                 onClick={() => setShowHelp(false)}
-                className="bg-blue-600 hover:bg-blue-500 text-white py-2 px-6 rounded font-semibold transition-colors"
+                className="bg-mta-blue hover:bg-mta-dark text-white py-2 px-6 rounded font-semibold transition-colors"
               >
                 Rozumím
               </button>
@@ -568,32 +568,34 @@ export default function App() {
         </div>
       )}
 
-      {/* Main Content */}
-      <div className="max-w-4xl mx-auto space-y-6">
-        <div className="flex items-center justify-between border-b border-slate-700 pb-4">
-          <div className="flex items-center space-x-3">
-            <Cpu className="w-8 h-8 text-blue-400" />
-            <div>
-              <h1 className="text-2xl font-bold text-white">EduBox HUB Panel · Firmupdater 📦</h1>
-              <p className="text-sm text-slate-400">součást ekosystému EduBox HUB · <a href="https://github.com/sgtkingo/EduBox-HUB-Panel" target="_blank" rel="noreferrer" className="text-blue-400 hover:text-blue-300">GitHub Panelu</a></p>
+      <header className="mta-header-band text-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-4 min-w-0">
+            {/* Replace with the dedicated Firmupdater logo when it is ready. */}
+            <span className="mta-product-placeholder" aria-label="Dočasný symbol Firmupdateru">F</span>
+            <div className="min-w-0">
+              <p className="text-xs font-semibold uppercase tracking-widest text-blue-100">EduBox HUB · Panel</p>
+              <h1 className="text-2xl sm:text-3xl font-bold leading-tight">Firmupdater</h1>
+              <p className="text-sm text-blue-100">Aktualizace firmwaru dotykového panelu</p>
             </div>
           </div>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setShowHelp(true)}
-              className="text-slate-400 hover:text-white flex items-center gap-1 text-sm bg-slate-800 px-3 py-1 rounded-full border border-slate-700"
-            >
-              <HelpCircle size={16} /> Nápověda
-            </button>
-          </div>
+          <button
+            onClick={() => setShowHelp(true)}
+            className="text-white hover:bg-white/15 flex items-center gap-2 text-sm font-semibold border border-white/60 px-4 py-2 rounded-lg transition-colors"
+          >
+            <HelpCircle size={18} /> Nápověda
+          </button>
         </div>
+      </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Primary updater workflow stays visible before secondary content. */}
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(320px,.9fr)] gap-6">
           <div className="space-y-6">
             {/* Step 1: Version Info (Auto-checked) */}
-            <div className="bg-slate-800 p-5 rounded-lg border border-slate-700 shadow-lg">
+            <section className="mta-step-card p-5 rounded-xl">
               <div className="flex justify-between items-start mb-2">
-                <h2 className="text-lg font-semibold text-white flex items-center gap-2">
+                <h2 className="text-lg font-bold text-mta-dark flex items-center gap-2">
                   <RefreshCw size={20} className={loadingUpdate ? "animate-spin" : ""} /> 1. Verze
                   Firmwaru
                 </h2>
@@ -601,7 +603,7 @@ export default function App() {
                   <button
                     onClick={checkUpdates}
                     disabled={loadingUpdate}
-                    className="text-xs text-slate-400 hover:text-white flex items-center gap-1 bg-slate-700/50 px-2 py-1 rounded border border-slate-600 hover:bg-slate-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="text-sm text-mta-blue hover:text-mta-dark flex items-center gap-1 bg-mta-mist px-3 py-1.5 rounded border border-blue-200 hover:bg-blue-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     title="Znovu kontrolovat aktualizace"
                   >
                     <RefreshCw size={12} className={loadingUpdate ? "animate-spin" : ""} /> Obnovit
@@ -611,7 +613,7 @@ export default function App() {
                       href={latestRelease.html_url}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1 bg-slate-700/50 px-2 py-1 rounded border border-slate-600"
+                      className="text-sm text-mta-blue hover:text-mta-dark flex items-center gap-1 bg-mta-mist px-3 py-1.5 rounded border border-blue-200"
                       title="Otevřít release notes na GitHubu"
                     >
                       <FileText size={12} /> Poznámky
@@ -622,54 +624,54 @@ export default function App() {
               </div>
 
               {loadingUpdate ? (
-                <div className="text-slate-400 text-sm py-4 text-center">
+                <div className="text-slate-600 text-sm py-4 text-center">
                   Kontroluji dostupnost nové verze...
                 </div>
               ) : latestRelease ? (
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center bg-slate-700/30 p-3 rounded border border-slate-600/50">
+                  <div className="flex justify-between items-center bg-mta-mist p-3 rounded border border-blue-100">
                     <div>
-                      <div className="text-sm text-slate-400">Nejnovější verze:</div>
-                      <div className="text-xl font-bold text-green-400">{latestRelease.tag_name}</div>
+                      <div className="text-sm text-slate-600">Nejnovější verze:</div>
+                      <div className="text-xl font-bold text-mta-dark">{latestRelease.tag_name}</div>
                     </div>
                     <div className="text-right">
-                      <div className="text-xs text-slate-500">
+                      <div className="text-sm text-slate-600">
                         {new Date(latestRelease.published_at).toLocaleDateString()}
                       </div>
                       {firmwareBin ? (
-                        <div className="text-xs text-green-400 flex items-center gap-1 mt-1 justify-end">
+                        <div className="text-sm text-emerald-700 flex items-center gap-1 mt-1 justify-end">
                           <Check size={12} /> Staženo
                         </div>
                       ) : (
-                        <div className="text-xs text-red-400">Chyba stažení</div>
+                        <div className="text-sm text-red-700">Chyba stažení</div>
                       )}
                     </div>
                   </div>
 
-                  <label className="text-xs text-slate-500 cursor-pointer flex items-center gap-1 mt-2">
+                  <label className="text-sm text-slate-600 flex items-center gap-1 mt-2">
                     <input
                       type="checkbox"
                       disabled
                       checked={useProxy}
                       onChange={(e) => setUseProxy(e.target.checked)}
-                      className="rounded bg-slate-700 border-slate-600"
+                      className="rounded border-slate-300"
                     />
                     Použít CORS Proxy (aktuálně nepodporováno)
                   </label>
                 </div>
               ) : (
-                <div className="text-red-400 text-sm py-2">Nepodařilo se načíst informace o verzi.</div>
+                <div className="text-red-700 text-sm py-2">Nepodařilo se načíst informace o verzi.</div>
               )}
-            </div>
+            </section>
 
             {/* Step 2: Connection */}
-            <div className="bg-slate-800 p-5 rounded-lg border border-slate-700 shadow-lg">
-              <h2 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
+            <section className="mta-step-card p-5 rounded-xl">
+              <h2 className="text-lg font-bold text-mta-dark mb-2 flex items-center gap-2">
                 <Zap size={20} /> 2. Připojení
               </h2>
-              <div className="text-sm text-slate-400 mb-4 space-y-2">
+              <div className="text-sm text-slate-700 mb-4 space-y-2">
                 <p>Připojte EduBox HUB Panel k počítači USB kabelem.</p>
-                <p className="text-slate-500 text-xs flex items-center gap-1">
+                <p className="text-slate-600 text-sm flex items-center gap-1">
                   <Cable size={12} /> Ujistěte se, že kabel přenáší data (nejen nabíjení).
                 </p>
               </div>
@@ -677,44 +679,44 @@ export default function App() {
               <button
                 onClick={connectToDevice}
                 disabled={!!portSelected || isFlashing}
-                className={`w-full py-2 px-4 rounded transition-colors flex items-center justify-center gap-2 ${
+                className={`w-full py-3 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 ${
                   portSelected
-                    ? "bg-green-600 cursor-default"
-                    : "bg-slate-600 hover:bg-slate-500 text-white"
+                    ? "bg-emerald-700 text-white cursor-default"
+                    : "bg-mta-blue hover:bg-mta-dark text-white"
                 }`}
               >
                 {portSelected ? "Zařízení připojeno" : "Vybrat zařízení (COM port)"}
               </button>
 
               {!port && (
-                <div className="mt-4 pt-3 border-t border-slate-700/50 text-xs text-slate-400 flex items-start gap-2">
-                  <AlertCircle size={14} className="mt-0.5 shrink-0 text-blue-400" />
+                <div className="mt-4 pt-3 border-t border-slate-200 text-sm text-slate-600 flex items-start gap-2">
+                  <AlertCircle size={16} className="mt-0.5 shrink-0 text-mta-blue" />
                   <div>
                     Nevidíte žádný port? <br />
                     <button
                       onClick={() => openHelp("device")}
-                      className="text-blue-400 hover:text-blue-300 underline"
+                      className="text-mta-blue hover:text-mta-dark underline"
                     >
                       Zkontrolujte ovladače (Nápověda)
                     </button>
                   </div>
                 </div>
               )}
-            </div>
+            </section>
 
             {/* Step 3: Flash */}
-            <div className="bg-slate-800 p-5 rounded-lg border border-slate-700 shadow-lg relative overflow-hidden flex flex-col">
+            <section className="mta-step-card mta-step-card--action p-5 rounded-xl relative overflow-hidden flex flex-col">
               {isFlashing && (
                 <div
-                  className="absolute top-0 left-0 h-1 bg-blue-500 transition-all duration-300"
+                  className="absolute top-0 left-0 h-1 bg-mta-orange transition-all duration-300"
                   style={{ width: `${progress}%` }}
                 />
               )}
-              <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+              <h2 className="text-lg font-bold text-mta-dark mb-4 flex items-center gap-2">
                 <Download size={20} /> 3. Nahrát Firmware
               </h2>
 
-              <div className="bg-yellow-900/20 border border-yellow-700/50 rounded p-3 mb-4 text-xs text-yellow-200 flex gap-2 items-start">
+              <div className="bg-amber-50 border border-amber-200 rounded p-3 mb-4 text-sm text-amber-900 flex gap-2 items-start">
                 <AlertTriangle size={16} className="shrink-0 mt-0.5" />
                 <div>
                   <strong>Tip:</strong> Pokud se nahrávání zasekne na "Connecting...", držte tlačítko
@@ -723,7 +725,7 @@ export default function App() {
               </div>
 
               <div className="flex justify-between items-center mb-4 text-sm">
-                <span className="text-slate-400">Stav:</span>
+                <span className="text-slate-600">Stav:</span>
                 <span className={`font-mono ${getStatusColor()}`}>{getStatusMessage()}</span>
               </div>
 
@@ -731,45 +733,49 @@ export default function App() {
                 <button
                   onClick={flashFirmware}
                   disabled={flashDisabled}
-                  className="w-full bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-700 disabled:text-slate-500 text-white py-3 px-4 rounded font-bold transition-all shadow-lg flex items-center justify-center gap-2 mt-auto"
+                  className="w-full bg-mta-orange hover:bg-mta-orangeDark disabled:bg-slate-200 disabled:text-slate-500 text-white py-3 px-4 rounded-lg font-bold transition-colors flex items-center justify-center gap-2 mt-auto"
                 >
-                  {isFlashing ? "Nahrávám..." : "Náhrát firmware"} <Play size={18} fill="currentColor" />
+                  {isFlashing ? "Nahrávám..." : "Nahrát firmware"} <Play size={18} fill="currentColor" />
                 </button>
               </span>
-            </div>
+            </section>
           </div>
 
           {/* Right Column: Terminal */}
-          <div className="flex flex-col bg-black rounded-lg border border-slate-700 shadow-xl overflow-hidden h-[600px]">
-            <div className="bg-slate-800 px-4 py-2 border-b border-slate-700 flex justify-between items-center">
-              <span className="text-xs font-mono text-slate-400 flex items-center gap-2">
-                <Terminal size={14} /> SYSTEM LOG
+          <div className="mta-terminal flex flex-col rounded-xl overflow-hidden h-[560px] lg:sticky lg:top-6">
+            <div className="bg-mta-dark px-4 py-3 border-b border-blue-800 flex justify-between items-center">
+              <span className="text-sm font-semibold text-white flex items-center gap-2">
+                <Terminal size={16} /> Systémový log
               </span>
               <button
                 onClick={() => setLogs("")}
-                className="text-xs text-slate-500 hover:text-white transition-colors"
+                className="text-sm text-blue-100 hover:text-white transition-colors"
               >
                 Vymazat
               </button>
             </div>
-            <div className="flex-1 p-4 overflow-y-auto font-mono text-xs md:text-sm space-y-1">
-              <pre className="text-green-500/80 whitespace-pre-wrap break-all">
+            <div className="flex-1 p-4 overflow-y-auto font-mono text-sm space-y-1">
+              <pre className="text-blue-100 whitespace-pre-wrap break-all">
                 {logs || "Čekám na akci uživatele..."}
               </pre>
               <div ref={terminalEndRef} />
             </div>
           </div>
         </div>
-      </div>
+      </main>
 
-      {/* Footer with version */}
-      <div className="max-w-4xl mx-auto mt-8 pt-4 border-t border-slate-700/50 text-center text-xs text-slate-500">
-        <p>
-          v{appVersion} | EduBox HUB Panel Firmupdater © {new Date().getFullYear()} <a href="https://github.com/sgtkingo/EduBox-HUB-Panel-Firmupdater" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">
-            Github
+      <footer className="bg-white border-t border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-wrap items-center justify-between gap-5">
+          <div className="text-sm text-slate-600">
+            <p className="font-semibold text-mta-dark">EduBox HUB Panel · Firmupdater</p>
+            <p>Verze {appVersion} · © {new Date().getFullYear()}</p>
+            <a href="https://github.com/sgtkingo/EduBox-HUB-Panel-Firmupdater" target="_blank" rel="noopener noreferrer" className="text-mta-blue hover:text-mta-dark underline">Zdrojový kód na GitHubu</a>
+          </div>
+          <a href="https://m-ta.cz/" target="_blank" rel="noopener noreferrer" aria-label="Moravskoslezská Technologická Akademie – otevřít web">
+            <img src={`${import.meta.env.BASE_URL}mta-logo.svg`} alt="Moravskoslezská Technologická Akademie" className="mta-footer-logo" />
           </a>
-        </p>
-      </div>
+        </div>
+      </footer>
     </div>
   );
 }

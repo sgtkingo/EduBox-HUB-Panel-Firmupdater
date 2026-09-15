@@ -2,9 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Nastavení tmavého pozadí pro celou aplikaci */
 body {
-  @apply bg-slate-900 text-slate-200;
   margin: 0;
   min-height: 100vh;
+  background: #eef5fa;
+  color: #17324d;
+  font-family: 'Aptos', 'Segoe UI', Arial, sans-serif;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible, a:focus-visible {
+  outline: 3px solid #eb6209;
+  outline-offset: 3px;
+}
+
+.mta-app {
+  background: linear-gradient(180deg, #e8f3fa 0, #f5f8fb 320px);
+}
+
+.mta-header-band {
+  background: #055da9;
+  border-bottom: 5px solid #eb6209;
+}
+
+.mta-product-placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border: 2px dashed rgba(255, 255, 255, .74);
+  border-radius: 14px;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.mta-step-card {
+  background: #fff;
+  border: 1px solid #d3e1ec;
+  border-left: 4px solid #055da9;
+  box-shadow: 0 10px 28px rgba(3, 68, 119, .07);
+}
+
+.mta-step-card--action {
+  border-left-color: #eb6209;
+}
+
+.mta-terminal {
+  background: #102a43;
+  border: 1px solid #194266;
+  box-shadow: 0 10px 28px rgba(3, 68, 119, .1);
+}
+
+.mta-footer-logo {
+  width: min(220px, 100%);
+  height: auto;
+}
+
+@media (max-width: 640px) {
+  .mta-product-placeholder {
+    width: 46px;
+    height: 46px;
+  }
 }
